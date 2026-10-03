@@ -1,21 +1,20 @@
 import styles from "./styles.module.css";
 
-type DefaultInputProps = {
-  id: string;
-  labelText?: string; //labelText?: string; exemplo de variavel opcional
-} & React.ComponentProps<"input">;
+type DefaultButtonProps = {
+  icon: React.ReactNode;
+  color?: "green" | "red";
+} & React.ComponentProps<"button">;
 
-export function DefaultInput({
-  id,
-  type,
-  labelText,
-  ...rest
-}: DefaultInputProps) {
+export function DefaultButton({
+  icon,
+  color = "green",
+  ...props
+}: DefaultButtonProps) {
   return (
     <>
-      {/* {labelText && <label htmlFor={id}>{labelText}</label>} exemplo de if para validar*/}
-      <label htmlFor={id}>{labelText}</label>
-      <input className={styles.input} id={id} type={type} {...rest} />
+      <button className={`${styles.button} ${styles[color]}`} {...props}>
+        {icon}
+      </button>
     </>
   );
 }
